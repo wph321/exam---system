@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd">
+
+
+<!-- dao -->
+	<bean id="subjectDao" class="com.exam.dao.impl.SubjectDaoimpl">
+	  <property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="pointDao" class="com.exam.dao.impl.PointDaoimpl">
+	   <property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="examdateDao" class="com.exam.dao.impl.ExamdateDaoimpl">
+	  <property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+<!-- biz -->
+	<bean id="subjectBiz" class="com.exam.biz.impl.SubjectBizimpl">
+	 <property name="subjectDao" ref="subjectDao"></property>
+	</bean>
+	<bean id="pointBiz" class="com.exam.biz.impl.PointBizimpl">
+	  <property name="pointDao" ref="pointDao"></property>
+	</bean>
+	<bean id="examdateBiz" class="com.exam.biz.impl.ExamdateBizimpl">
+	  <property name="examdateDao" ref="examdateDao"></property>
+	</bean>
+<!-- action -->
+	<bean id="subjectAction" class="com.exam.action.SubjectAction" scope="prototype">
+	 <property name="subjectBiz" ref="subjectBiz"></property>
+	 <property name="errorbiz" ref="errorBiz"></property>
+	</bean>
+	<bean id="pointAction" class="com.exam.action.PointAction" scope="prototype">
+	  <property name="pointBiz" ref="pointBiz"></property>
+	</bean>
+	<bean id="examdateAction" class="com.exam.action.ExamdateAction" scope="prototype">
+	  <property name="examdateBiz" ref="examdateBiz"></property>
+	</bean>
+</beans>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<package name="new" namespace="/" extends="struts-default">
+<interceptors>
+	<interceptor-stack name="loadStack">
+			<interceptor-ref name="fileUpload">
+				<param name="allowedTypes">image/bmp,image/jpeg,image/pjpeg,image/gif,image/png,image/x-png</param>
+				<param name="maximumSize">102400000000</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			
+	</interceptor-stack>
+</interceptors>
+	<action name="*New" class="newaction" method="{1}">
+		<interceptor-ref name="loadStack"></interceptor-ref>
+		<result name="input">admin/add-news.jsp</result>
+		<result name="findone_success">/showNews.jsp</result>
+		<result name="admin_findone">/admin/update-news.jsp</result>
+		<result name="findByPage_success">/newsList.jsp</result>
+		<result name="adminfindByPage_success">/admin/news-list.jsp</result>
+		<result name="add_success" type="redirectAction">findByPageNew?nowpage=1&amp;type=admin</result>
+		<result name="update_success" type="redirectAction">findByPageNew?nowpage=1&amp;type=admin</result>
+		<result name="delete_success" type="redirectAction">findByPageNew?nowpage=1&amp;type=admin</result>
+		
+	</action>
+
+	
+	
+</package>
+</struts>    

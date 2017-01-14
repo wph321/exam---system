@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd">
+
+
+<!-- dao -->
+	<bean id="studentDao" class="com.exam.dao.impl.StudentDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="adminDao" class="com.exam.dao.impl.AdminDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="errorDao" class="com.exam.dao.impl.ErrorDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="collectDao" class="com.exam.dao.impl.CollectDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+<!-- biz -->
+	<bean id="studentBiz" class="com.exam.biz.impl.StudentBizImpl">
+		<property name="studentDao" ref="studentDao"></property>
+	</bean>
+	
+	<bean id="adminBiz" class="com.exam.biz.impl.AdminBizImpl">
+		<property name="adminDao" ref="adminDao"></property>
+	</bean>
+	
+	<bean id="errorBiz" class="com.exam.biz.impl.ErrorBizImpl">
+		<property name="errordao" ref="errorDao"></property>
+	</bean>
+	
+	<bean id="collectBiz" class="com.exam.biz.impl.CollectBizImpl">
+		<property name="collectdao" ref="collectDao"></property>
+	</bean>
+<!-- action -->
+	<bean id="studentAction" class="com.exam.action.StudentAction" >
+		<property name="studentBiz" ref="studentBiz"></property>
+		<property name="errorBiz" ref="errorBiz"></property>
+		<property name="collectBiz" ref="collectBiz"></property>
+		<property name="gradeBiz" ref="gradebiz"></property>
+	</bean>
+	<bean id="adminAction" class="com.exam.action.AdminAction">
+		<property name="adminBiz" ref="adminBiz"></property>
+		<property name="studenBiz" ref="studentBiz"></property>
+		
+	</bean>
+	
+</beans>

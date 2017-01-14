@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<package name="collect" namespace="/" extends="struts-default">
+	<action name="*Collect" class="collectAction" method="{1}">
+		<result name="add_success">/student/exam-shoucang.jsp</result>
+		<result name="delete_success" type="redirectAction">/findCollect.action</result>
+		<result name="findByPage_success">/student/exam-shoucang.jsp</result>
+		<result name="find_success">/student/exam-shoucang.jsp</result>
+	</action>
+</package>
+</struts>    

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<package name="exam" namespace="/" extends="struts-default">
+	<action name="*Card" class="cardAction" method="{1}">
+		<result name="add_success">/student/examing.jsp</result>
+		<result name="update_success">/student/examing.jsp</result>
+		<result name="addByErrorAndSub_success">/student/examing.jsp</result>
+		<result name="addBySub_success">/student/examing.jsp</result>
+		<result name="addByPoint_success">/student/examing.jsp</result>
+		<result name="find_success">/student/exam-finished.jsp</result>
+		<result name="submit_success">/student/exam-finished.jsp</result>
+		<result name="addByUndoAndSub_success">/student/examing.jsp</result>
+		<result name="error">/home.jsp</result>
+	</action>
+</package>
+</struts>    

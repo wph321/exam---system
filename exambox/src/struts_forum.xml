@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<package name="forum" namespace="/" extends="struts-default">
+<interceptors>
+	<interceptor-stack name="loadStack">
+			<interceptor-ref name="fileUpload">
+				<param name="allowedTypes">image/pjpeg,image/gif,image/png,image/x-png</param>
+				<param name="maximumSize">102400000000</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			
+	</interceptor-stack>
+</interceptors>
+	<action name="*Forum" class="forumaction" method="{1}">
+	     <result name="findByUserAndPage_success">/student/forum-list.jsp</result>
+		<result name="findByPage_success">/showallforum.jsp</result>
+		<result name="adminfindByPage_success">/admin/forum-list.jsp</result>
+		<result name="findone_success">/showreply.jsp</result>
+		<result name="adminadd_success" type="redirectAction">
+			<param name="namespace">/</param>
+			<param name="actionName">findByPageForum?nowpage=1&amp;type=admin</param>
+		</result>
+		<result name="add_success" type="redirectAction">
+			<param name="namespace">/</param>
+			<param name="actionName">findByPageForum?nowpage=1</param>
+		</result>
+		<result name="delete_success" type="redirectAction">
+			<param name="namespace">/</param>
+			<param name="actionName">findByUserAndPageForum.action?student.id=${student.id}&amp;nowpage=1</param>
+		</result>
+		<result name="admindelete_success" type="redirectAction">findByPageForum?nowpage=1&amp;type=admin</result>
+	</action>
+	<action name="*Reply" class="replyaction" method="{1}">
+		<result name="add_success" type="redirectAction">
+			<param name="namespace">/</param>
+			<param name="actionName">findoneForum?forum.fid=${reply.forum.fid}</param>
+		</result>
+		<result name="delete_success" type="redirectAction">
+			<param name="namespace">/</param>
+			<param name="actionName">findoneForum?forum.fid=${reply.forum.fid}</param>
+		</result>
+		<result name="admindelete_success" type="redirectAction">
+			<param name="namespace">/</param>
+			<param name="actionName">findoneForum?forum.fid=${reply.forum.fid}&amp;type=admin</param>
+		</result>
+	</action>
+</package>
+</struts>    

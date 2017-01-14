@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<package name="subject" namespace="/" extends="struts-default">
+	<action name="*Subject" class="subjectAction" method="{1}">
+	 <result name="add_success" type="redirectAction">
+	        <param name="namespace">/</param>
+       		<param name="actionName">findByPageSubject.action?nowpage=1</param>
+	 </result>
+	 <result name="add_error">/admin/add-subject.jsp</result>
+	 <result name="delete_success" type="redirectAction">
+	        <param name="namespace">/</param>
+       		<param name="actionName">findByPageSubject.action?nowpage=1</param>
+	 </result>
+	 <result name="delete_error">/admin/subject-list.jsp</result>
+	 <result name="update_success" type="redirectAction">
+	        <param name="namespace">/</param>
+       		<param name="actionName">findByPageSubject.action?nowpage=1</param>
+	 </result>
+	 <result name="update_error">/admin/update-subject.jsp</result>
+	 <result name="find_success">/admin/subject-list.jsp</result>
+	 <result name="adminfindone_success">/admin/update-subject.jsp</result>
+	 <result name="findone_success">/home.jsp</result>
+	 <result name="findByPage_success">/admin/subject-list.jsp</result>
+	</action>
+	
+  <!-- 配置Point -->
+  <action name="*Point" class="pointAction" method="{1}">
+    <result name="add_success" type="redirectAction">
+	        <param name="namespace">/</param>
+       		<param name="actionName">findByPagePoint.action?nowpage=1</param>
+	 </result>
+	 <result name="add_error">/admin/add-point.jsp</result>
+	 <result name="delete_success" type="redirectAction">
+	        <param name="namespace">/</param>
+       		<param name="actionName">findByPagePoint.action?nowpage=1</param>
+	 </result>
+	 <result name="delete_error">/admin/point-list.jsp</result>
+	 <result name="update_success" type="redirectAction">
+	        <param name="namespace">/</param>
+       		<param name="actionName">findByPagePoint.action?nowpage=1</param>
+	 </result>
+	 <result name="update_error">/admin/update-point.jsp</result>
+	 <result name="find_success">/admin/point-list.jsp</result>
+	 <result name="findone_success">/admin/update-point.jsp</result>
+	 <result name="findByPage_success">/admin/point-list.jsp</result>
+	  <result name="findByPageAndSubject_success">/admin/point-list.jsp</result>
+  </action>
+<!-- 配置Examdate -->
+   <action name="*Examdate" class="examdateAction" method="{1}">
+      <result name="add_success" type="redirectAction">
+	        <param name="namespace">/</param>
+       		<param name="actionName">findByPageExamdate.action?nowpage=1</param>
+	 </result>
+	 <result name="add_error">/admin/add-examdate.jsp</result>
+	 <result name="delete_success" type="redirectAction">
+	        <param name="namespace">/</param>
+       		<param name="actionName">findByPageExamdate.action?nowpage=1</param>
+	 </result>
+	 <result name="delete_error">/admin/examdate-list.jsp</result>
+	 <result name="update_success" type="redirectAction">
+	        <param name="namespace">/</param>
+       		<param name="actionName">findByPageExamdate.action?nowpage=1</param>
+	 </result>
+	 <result name="update_error">/admin/update-examdate.jsp</result>
+     <result name="findone_success">/admin/update-examdate.jsp</result>
+     <result name="find_success">/date.jsp</result>
+     <result name="findByPage_success">/admin/examdate-list.jsp</result>
+     <result name="findByPageSubject_success">/admin/examdate-list.jsp</result>
+   </action>
+</package>
+</struts>    

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<package name="video" namespace="/" extends="struts-default">
+<interceptors>
+	<interceptor-stack name="loadStack">
+			<interceptor-ref name="fileUpload">
+				<param name="allowedTypes">image/pjpeg,image/gif</param>
+				<param name="maximumSize">102400000000000000</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+	</interceptor-stack>
+</interceptors>
+
+	<action name="*Upload" class="uploadVideo" method="{1}">
+		<result name="success" type="redirectAction">/findBySubVideo.action?type=admin</result>
+	</action>
+	<action name="showAllVideo" class="uploadVideo" method="showAll">
+		<result name="showVideo_success">/admin/video-list.jsp</result>
+	</action>
+	<action name="*Video" class="uploadVideo" method="{1}">
+		<result name="delete_success" type="redirectAction">findBySubVideo.action?type=admin</result>
+		<result name="success" type="redirectAction">/findBySubVideo.action?type=admin</result>
+		<result name="findBySub_success">/videolistBySubject.jsp</result>
+		<result name="adminfindByPage_success">/admin/video-list.jsp</result>
+		<result name="find_success">/admin/video-update.jsp</result>
+		<result name="update_success" type="redirectAction">/findBySubVideo.action?type=admin</result>
+	</action>
+	<action name="*1" class="uploadVideo" method="{1}">
+		<result name="showVideo_success">/vedioList.jsp</result>
+	</action>
+	<action name="*play" class="uploadVideo" method="{1}">
+		<result name="success">/showVedio.jsp</result>
+	</action>
+	
+</package>
+	<constant name="struts.multipart.maxSize" value="102400000000000000"></constant>
+</struts>    

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<package name="question" namespace="/" extends="struts-default">
+	<action name="*Question" class="questionAction" method="{1}" >
+		<result name="question_add_success"  type="redirectAction">/findQuestion.action</result>
+		<result name="find_success">/admin/question-list.jsp</result>
+		<result name="update_success" type="redirectAction">/findQuestion.action</result>
+		<result name="update_tiao_success" >/admin/question-update.jsp</result>
+		<result name="search_success">/student/findquestion.jsp</result>
+		<result name="note_success">/student/add-note.jsp</result>
+		<result name="question_false">/404.html</result>
+	</action>
+</package>
+</struts>    

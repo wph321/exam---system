@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<package name="note" namespace="/" extends="struts-default">
+	<action name="*Note" class="noteAction" method="{1}">
+	   <result name="add_success" type="redirectAction">
+	        <param name="namespace">/</param>
+       		<param name="actionName">noteQuestion.action?qid=${note.question.id}</param>
+       </result>
+       <result name="add_error">/student/add-note.jsp</result>
+       <result name="delete_success" type="redirectAction">
+	        <param name="namespace">/</param>
+       		<param name="actionName">findByPageAndStudentNote.action?student.id=${student.id}&amp;nowpage=1</param>
+       </result>
+       <result name="delete1_success" type="redirectAction">
+	        <param name="namespace">/</param>
+       		<param name="actionName">noteQuestion.action?qid=${note.question.id}</param>
+       </result>
+       <result name="delete_error">/404.html</result>
+	   <result name="findByPageAndStudent_success">/student/note-list.jsp</result>
+	   <result name="findByPageAndSubjectAndStudent_success">/student/note-list.jsp</result>
+	</action>
+	<action name="*Vcomment" class="vcommentAction" method="{1}">
+	   <result name="add_success" type="redirectAction">
+	        <param name="namespace">/</param>
+       		<param name="actionName">findVideoByIdplay.action?vid=${vid}</param>
+	   </result>
+	   <result name="add_error">/showVedio.jsp</result>
+	   <result name="delete_success" type="redirectAction">
+	        <param name="namespace">/</param>
+       		<param name="actionName">findVideoByIdplay.action?vid=${vid}</param>
+	   </result>
+	   <result name="delet_error">/showVedio.jsp</result>
+	</action>
+</package>
+</struts>    

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<constant name="struts.custom.i18n.resources" value="tisi"></constant>
+<include file="struts_ajax.xml"></include>
+<include file="struts_exam.xml"></include>
+<include file="struts_forum.xml"></include>
+<include file="struts_new.xml"></include>
+<include file="struts_question.xml"></include>
+<include file="struts_user.xml"></include>
+<include file="struts_subject.xml"></include>
+<include file="struts_error.xml"></include>
+<include file="struts_collect.xml"></include>
+<include file="struts_grade.xml"></include>
+<include file="struts_note.xml"></include>
+<include file="struts_video.xml"></include>
+<include file="struts_sign.xml"></include>
+<package name="default" namespace="/" extends="struts-default">
+<interceptors>
+	<interceptor-stack name="iamgeloadStack">
+			<interceptor-ref name="fileUpload">
+				<param name="allowedTypes">image/bmp,image/jpeg,image/pjpeg,image/gif,image/png,image/x-png</param>
+				<param name="maximumSize">1024000000</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+	</interceptor-stack>
+	<interceptor-stack name="xlsloadStack">
+			<interceptor-ref name="fileUpload">
+				<param name="allowedTypes">.xls</param>
+				<param name="maximumSize">102400</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			
+	</interceptor-stack>
+	<interceptor-stack name="vedioloadStack">
+			<interceptor-ref name="fileUpload">
+				<param name="allowedTypes">.mp4,.wmv,.rmvb,.mkv,.avi</param>
+				<param name="maximumSize">102400</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			
+	</interceptor-stack>
+</interceptors>
+
+	<global-results>
+		<result name="exception">/404.html</result>
+	</global-results>
+	
+	<!--初始化的方法 -->
+   <action name="*Index" class="indexAction" method="{1}">
+     <result name="init_success">/index3.jsp</result>
+   </action>
+</package>
+</struts>    

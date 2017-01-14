@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd">
+<import resource="applicationContext_exam.xml"/>
+<import resource="applicationContext_forum.xml"/>
+<import resource="applicationContext_new.xml"/>
+<import resource="applicationContext_question.xml"/>
+<import resource="applicationContext_subject.xml"/>
+<import resource="applicationContext_user.xml"/>
+<import resource="applicationContext_error.xml"/>
+<import resource="applicationContext_collect.xml"/>
+<import resource="applicationContext_grade.xml"/>
+<import resource="applicationContext_note.xml"/>
+<import resource="applicationContext_video.xml"/>
+<import resource="applicationContext_sign.xml"/>
+<!-- 数据库 -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="configLocation" value="classpath:hibernate.cfg.xml" >
+		</property>
+	</bean>
+<!-- 配置事务管理器 -->
+	<bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+<!-- Aop声明事务 -->
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="add*" propagation="REQUIRED"/>
+			<tx:method name="delete*" propagation="REQUIRED"/>
+			<tx:method name="update*" propagation="REQUIRED"/>
+			<tx:method name="*" read-only="true"/>		
+		</tx:attributes>
+	</tx:advice>
+	<aop:config>
+		<aop:pointcut expression="execution(* com.exam.biz.impl.*.*(..))" id="txcut"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txcut"/>
+	</aop:config>
+<!-- dao -->
+	
+<!-- biz -->
+	
+	
+	
+<!-- 初始化的action -->
+	<bean id="indexAction" class="com.exam.action.IndexAction" > 
+	    <property name="subjectBiz" ref="subjectBiz"></property>
+	    <property name="pointBiz" ref="pointBiz"></property>
+	    <property name="examdateBiz" ref="examdateBiz"></property>
+	    <property name="videobiz" ref="videoBiz"></property>
+	    <property name="newbiz" ref="newbiz"></property>
+	</bean>
+<!-- 配置Ajax的action -->
+    <bean id="ajaxAction" class="com.exam.action.AjaxAction" >
+     <property name="pointBiz" ref="pointBiz"></property>
+    </bean>
+</beans>
